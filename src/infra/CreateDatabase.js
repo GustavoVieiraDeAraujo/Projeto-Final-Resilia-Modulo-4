@@ -1,12 +1,12 @@
-import sqlite3 from 'sqlite3'
-const db = new sqlite3.Database('./src/infra/database.db');
+import sqlite3 from "sqlite3";
+const db = new sqlite3.Database("./src/infra/database.db");
 
-// Molde para Criação de Tabela 
+// Molde para Criação de Tabela
 // ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓
 
 // const CreateTable<coloca o nome da tabela aqui>=`
 // CREATE TABLE IF NOT EXISTS <coloca o nome da tabela aqui> (
-//     "ID" INTEGER PRIMARY KEY AUTOINCREMENT 
+//     "ID" INTEGER PRIMARY KEY AUTOINCREMENT
 //     (campo ID é padrão em todas as tabelas do projeto)
 //     <coloca os outros campos da tabela aqui>
 //);`
@@ -14,7 +14,7 @@ const db = new sqlite3.Database('./src/infra/database.db');
 // Exemplo
 // ⇓⇓⇓⇓⇓⇓⇓
 
-const CreateTableExemplo =`
+const CreateTableExemplo = `
 CREATE TABLE IF NOT EXISTS "Exemplo" (
   "ID" INTEGER PRIMARY KEY AUTOINCREMENT,
   "NOME" varchar(64),
@@ -24,8 +24,8 @@ CREATE TABLE IF NOT EXISTS "Exemplo" (
   "SEXO" char
 );`;
 
-// Molde para Povoar a Tabela 
-// ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓ 
+// Molde para Povoar a Tabela
+// ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓
 
 // const PopulatingTable<coloca o nome da tabela aqui> =`
 // INSERT INTO <coloca o nome da tabela aqui> (<coloca os campos da tabela aqui>)
@@ -35,17 +35,17 @@ CREATE TABLE IF NOT EXISTS "Exemplo" (
 // Exemplo
 // ⇓⇓⇓⇓⇓⇓⇓
 
-const PopulatingTableExemplo =`
+const PopulatingTableExemplo = `
 INSERT INTO Exemplo (NOME, EMAIL, SENHA, VALOR, SEXO)
 VALUES 
-("Marlon", "marlon@marlon.com", "????????", 1000, "M"),
+("plano a", "marlon@marlon.com", "????????", 1000, "M"),
 ("Isabela", "isabela@isabela.com", "????????", 2000, "F"),
 ("Diego", "diego@diego.com", "????????", 3000, "M"),
 ("Gustavo", "gustavo@gustavo.com", "????????", 4000, "M");
-`
+`;
 
-// Molde da função de CRIAÇÃO da tabela  
-// ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓ 
+// Molde da função de CRIAÇÃO da tabela
+// ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓
 
 // function criaTabela<nome da tabela>() {
 //     db.run(<nome do molde de criação da tabela>, (error) => {
@@ -59,15 +59,17 @@ VALUES
 // ⇓⇓⇓⇓⇓⇓⇓
 
 function criaTabelaExemplo() {
-    db.run(CreateTableExemplo, (error) => {
-        if (error) {
-          console.log(`Erro ao criar tabela Exemplo. Erro gerado => ${error.message}`)
-        }
-    })
+  db.run(CreateTableExemplo, (error) => {
+    if (error) {
+      console.log(
+        `Erro ao criar tabela Exemplo. Erro gerado => ${error.message}`
+      );
+    }
+  });
 }
 
 // Molde da função de POVOAMENTO da tabela
-// ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓ 
+// ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓
 
 // function povoaTabela<nome da tabela>() {
 //     db.run(<nome do molde de povoamento da tabela>, (error) => {
@@ -81,11 +83,13 @@ function criaTabelaExemplo() {
 // ⇓⇓⇓⇓⇓⇓⇓
 
 function povoaTabelaExemplo() {
-    db.run(PopulatingTableExemplo , (error) => {
-        if (error) {
-          console.log(`Erro ao criar tabela Exemplo. Erro gerado => ${error.message}`)
-        }
-    })
+  db.run(PopulatingTableExemplo, (error) => {
+    if (error) {
+      console.log(
+        `Erro ao criar tabela Exemplo. Erro gerado => ${error.message}`
+      );
+    }
+  });
 }
 
 // Toques Finais
@@ -98,15 +102,13 @@ function povoaTabelaExemplo() {
 //    <coloque as funções criadas aqui dentro>
 // });
 
-
 // Exemplo
 // ⇓⇓⇓⇓⇓⇓⇓
 
-db.serialize( ()=> {
+db.serialize(() => {
   criaTabelaExemplo();
   povoaTabelaExemplo();
-})
-
+});
 
 // Esse arquivo cria o arquivo database.db com as tabelas povoadas, logo a partir dele é possivel gerar o database a qualquer momento, basta executar ele no terminal
-// Comando para executar o arquivo partindo da pasta do projeto=>  node ./src/infra/create-and-populate.js 
+// Comando para executar o arquivo partindo da pasta do projeto=>  node ./src/infra/create-and-populate.js
