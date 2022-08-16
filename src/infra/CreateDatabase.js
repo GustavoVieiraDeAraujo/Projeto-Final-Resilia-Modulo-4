@@ -1,61 +1,112 @@
 import sqlite3 from 'sqlite3'
 const db = new sqlite3.Database('./src/infra/database.db');
 
-const CreateTableMovies =`
-CREATE TABLE IF NOT EXISTS "movies" (
+// Molde para Criação de Tabela 
+// ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓
+
+// const CreateTable<coloca o nome da tabela aqui>=`
+// CREATE TABLE IF NOT EXISTS <coloca o nome da tabela aqui> (
+//     "ID" INTEGER PRIMARY KEY AUTOINCREMENT 
+//     (campo ID é padrão em todas as tabelas do projeto)
+//     <coloca os outros campos da tabela aqui>
+//);`
+
+// Exemplo
+// ⇓⇓⇓⇓⇓⇓⇓
+
+const CreateTableExemplo =`
+CREATE TABLE IF NOT EXISTS "Exemplo" (
   "ID" INTEGER PRIMARY KEY AUTOINCREMENT,
   "NOME" varchar(64),
-  "DATA_DE_CRIACAO" date,
-  "SINOPSE" varchar(250),
-  "CLASSIFICACAO" integer,
-  "DURACAO" time,
-  "HORARIOS" time
+  "EMAIL" varchar(64),
+  "SENHA" varchar(64),
+  "VALOR" integer,
+  "SEXO" char
 );`;
 
+// Molde para Povoar a Tabela 
+// ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓ 
 
-const PopulatingTableMovies =`
-INSERT INTO movies (NOME, DATA_DE_CRIACAO, SINOPSE, CLASSIFICACAO, DURACAO, HORARIOS)
+// const PopulatingTable<coloca o nome da tabela aqui> =`
+// INSERT INTO <coloca o nome da tabela aqui> (<coloca os campos da tabela aqui>)
+// VALUES (<coloca os dados que vão ser inseridos aqui>)
+//;`
+
+// Exemplo
+// ⇓⇓⇓⇓⇓⇓⇓
+
+const PopulatingTableExemplo =`
+INSERT INTO Exemplo (NOME, EMAIL, SENHA, VALOR, SEXO)
 VALUES 
-("Resident Evil 2: Apocalipse", "2004-10-08", "A heroína Alice tenta livrar
- Raccoon City de um segundo ataque de zumbis, mas a diabólica Umbrella 
- Corporation e os militares têm uma nova arma secreta. Os sobreviventes Jill Valentine,
-  Carlos Oliviera e Nicholai lutam ao lado de Alice contra um novo e melhorado 
-  Matt Addison de codinome Nemesis", 18, "01:34:00", "10:00:00"),
-
-("Resident Evil 3: A Extinção", "2007-10-05", "Alice e os sobreviventes da catástrofe 
-de Raccon tentam chegar ao Alasca, atravessando o deserto de Nevada. 
-O grupo se une para lutar contra a poderosa organização Umbrella 
-antes que o vírus que transforma humanos em aterrorizantes zumbis 
-contamine todo o mundo.", 18, "01:34:00", "10:00:00"),
-
-("Resident Evil 4: Recomeço", "2010-09-17", "Em um mundo dominado por mortos-vivos,
- Alice continua sua batalha para salvar sobreviventes. 
- Sua batalha se intensifica e ela recebe a ajuda de um velho amigo.
-  Em Los Angeles, pode existir um lugar para salvar-se, mas a cidade foi invadida
-  por mortos-vivos.", 18, "01:40:00", "10:00:00");
+("Marlon", "marlon@marlon.com", "????????", 1000, "M"),
+("Isabela", "isabela@isabela.com", "????????", 2000, "F"),
+("Diego", "diego@diego.com", "????????", 3000, "M"),
+("Gustavo", "gustavo@gustavo.com", "????????", 4000, "M");
 `
 
+// Molde da função de CRIAÇÃO da tabela  
+// ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓ 
 
-function criaTabelaMovies() {
-    db.run(CreateTableMovies, (error) => {
+// function criaTabela<nome da tabela>() {
+//     db.run(<nome do molde de criação da tabela>, (error) => {
+//         if (error) {
+//           console.log(`Erro ao criar tabela <nome da tabela>. Erro gerado => ${error.message}`)
+//         }
+//     })
+// }
+
+// Exemplo
+// ⇓⇓⇓⇓⇓⇓⇓
+
+function criaTabelaExemplo() {
+    db.run(CreateTableExemplo, (error) => {
         if (error) {
           console.log(`Erro ao criar tabela Exemplo. Erro gerado => ${error.message}`)
         }
     })
 }
 
+// Molde da função de POVOAMENTO da tabela
+// ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓ 
 
-function povoaTabelaMovies() {
-    db.run(PopulatingTableMovies , (error) => {
+// function povoaTabela<nome da tabela>() {
+//     db.run(<nome do molde de povoamento da tabela>, (error) => {
+//         if (error) {
+//           console.log(`Erro ao criar tabela <nome da tabela>. Erro gerado => ${error.message}`)
+//         }
+//     })
+// }
+
+// Exemplo
+// ⇓⇓⇓⇓⇓⇓⇓
+
+function povoaTabelaExemplo() {
+    db.run(PopulatingTableExemplo , (error) => {
         if (error) {
           console.log(`Erro ao criar tabela Exemplo. Erro gerado => ${error.message}`)
         }
     })
 }
 
+// Toques Finais
+// ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓
+
+// !!!!!!!!!!!!! PRIMEIRO CRIA A TABELA !!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!! DEPOIS POVOA ELA !!!!!!!!!!!!!!!
+
+// db.serialize( ()=> {
+//    <coloque as funções criadas aqui dentro>
+// });
+
+
+// Exemplo
+// ⇓⇓⇓⇓⇓⇓⇓
 
 db.serialize( ()=> {
-  criaTabelaMovies();
-  povoaTabelaMovies();
+  criaTabelaExemplo();
+  povoaTabelaExemplo();
 })
 
+
+// Esse arquivo cria o arquivo database.db com as tabelas povoadas, logo a partir dele é possivel gerar o database a qualquer momento, basta executar ele no terminal
+// Comando para executar o arquivo partindo da pasta do projeto=>  node ./src/infra/create-and-populate.js 
