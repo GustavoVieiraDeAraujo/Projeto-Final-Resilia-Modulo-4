@@ -15,13 +15,13 @@ const db = new sqlite3.Database("./src/infra/database.db");
 // ⇓⇓⇓⇓⇓⇓⇓
 
 const CreateTableExemplo = `
-CREATE TABLE IF NOT EXISTS "Exemplo" (
+CREATE TABLE IF NOT EXISTS PLANS (
   "ID" INTEGER PRIMARY KEY AUTOINCREMENT,
   "NOME" varchar(64),
-  "EMAIL" varchar(64),
-  "SENHA" varchar(64),
+  "TIPO_PLANO" varchar(64),
+  "DESCRICAO" varchar(200),
   "VALOR" integer,
-  "SEXO" char
+  "DURACAO_PLANO" integer
 );`;
 
 // Molde para Povoar a Tabela
@@ -36,12 +36,12 @@ CREATE TABLE IF NOT EXISTS "Exemplo" (
 // ⇓⇓⇓⇓⇓⇓⇓
 
 const PopulatingTableExemplo = `
-INSERT INTO Exemplo (NOME, EMAIL, SENHA, VALOR, SEXO)
+INSERT INTO Exemplo (TIPO_PLANO, DESCRICAO, VALOR, DURACAO_PLANO)
 VALUES 
-("plano a", "marlon@marlon.com", "????????", 1000, "M"),
-("Isabela", "isabela@isabela.com", "????????", 2000, "F"),
-("Diego", "diego@diego.com", "????????", 3000, "M"),
-("Gustavo", "gustavo@gustavo.com", "????????", 4000, "M");
+("plano basic", "10% de desconto,  ", 39, trimestral),
+("plano standart", "20% de desconto, ", 49, trimestral),
+("plano premium", "30% de desconto, ", 69, trimestral)
+
 `;
 
 // Molde da função de CRIAÇÃO da tabela
