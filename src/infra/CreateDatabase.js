@@ -1,112 +1,43 @@
 import sqlite3 from 'sqlite3'
 const db = new sqlite3.Database('./src/infra/database.db');
 
-// Molde para Criação de Tabela 
-// ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓
 
-// const CreateTable<coloca o nome da tabela aqui>=`
-// CREATE TABLE IF NOT EXISTS <coloca o nome da tabela aqui> (
-//     "ID" INTEGER PRIMARY KEY AUTOINCREMENT 
-//     (campo ID é padrão em todas as tabelas do projeto)
-//     <coloca os outros campos da tabela aqui>
-//);`
+const criaTabelaUsr = () => {
+  const USUARIOS_SCHEMA = `
+  CREATE TABLE IF NOT EXISTS USUARIOS (
+      NOME varchar(64),
+      ID INTEGER PRIMARY KEY AUTOINCREMENT,
+      CPF varchar(11),
+      EMAIL varchar(64),
+      DATA_DE_NASCIMENTO date,
+      TELEFONE varchar(14),
+      QUANTIDADE_PONTOS integer,
+      SENHA varchar(64),
+    );`;
 
-// Exemplo
-// ⇓⇓⇓⇓⇓⇓⇓
+    // FOREIGN KEY (PLAN_ID) REFERENCES PLANS(id), (inserir plano)
 
-const CreateTableExemplo =`
-CREATE TABLE IF NOT EXISTS "Exemplo" (
-  "ID" INTEGER PRIMARY KEY AUTOINCREMENT,
-  "NOME" varchar(64),
-  "EMAIL" varchar(64),
-  "SENHA" varchar(64),
-  "VALOR" integer,
-  "SEXO" char
-);`;
-
-// Molde para Povoar a Tabela 
-// ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓ 
-
-// const PopulatingTable<coloca o nome da tabela aqui> =`
-// INSERT INTO <coloca o nome da tabela aqui> (<coloca os campos da tabela aqui>)
-// VALUES (<coloca os dados que vão ser inseridos aqui>)
-//;`
-
-// Exemplo
-// ⇓⇓⇓⇓⇓⇓⇓
-
-const PopulatingTableExemplo =`
-INSERT INTO Exemplo (NOME, EMAIL, SENHA, VALOR, SEXO)
-VALUES 
-("Marlon", "marlon@marlon.com", "????????", 1000, "M"),
-("Isabela", "isabela@isabela.com", "????????", 2000, "F"),
-("Diego", "diego@diego.com", "????????", 3000, "M"),
-("Gustavo", "gustavo@gustavo.com", "????????", 4000, "M");
-`
-
-// Molde da função de CRIAÇÃO da tabela  
-// ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓ 
-
-// function criaTabela<nome da tabela>() {
-//     db.run(<nome do molde de criação da tabela>, (error) => {
-//         if (error) {
-//           console.log(`Erro ao criar tabela <nome da tabela>. Erro gerado => ${error.message}`)
-//         }
-//     })
-// }
-
-// Exemplo
-// ⇓⇓⇓⇓⇓⇓⇓
-
-function criaTabelaExemplo() {
-    db.run(CreateTableExemplo, (error) => {
-        if (error) {
-          console.log(`Erro ao criar tabela Exemplo. Erro gerado => ${error.message}`)
-        }
-    })
-}
-
-// Molde da função de POVOAMENTO da tabela
-// ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓ 
-
-// function povoaTabela<nome da tabela>() {
-//     db.run(<nome do molde de povoamento da tabela>, (error) => {
-//         if (error) {
-//           console.log(`Erro ao criar tabela <nome da tabela>. Erro gerado => ${error.message}`)
-//         }
-//     })
-// }
-
-// Exemplo
-// ⇓⇓⇓⇓⇓⇓⇓
-
-function povoaTabelaExemplo() {
-    db.run(PopulatingTableExemplo , (error) => {
-        if (error) {
-          console.log(`Erro ao criar tabela Exemplo. Erro gerado => ${error.message}`)
-        }
-    })
-}
-
-// Toques Finais
-// ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓
-
-// !!!!!!!!!!!!! PRIMEIRO CRIA A TABELA !!!!!!!!!!!!!!!!!!!!
-// !!!!!!!!!!!!! DEPOIS POVOA ELA !!!!!!!!!!!!!!!
-
-// db.serialize( ()=> {
-//    <coloque as funções criadas aqui dentro>
-// });
-
-
-// Exemplo
-// ⇓⇓⇓⇓⇓⇓⇓
-
-db.serialize( ()=> {
-  criaTabelaExemplo();
-  povoaTabelaExemplo();
-})
-
-
-// Esse arquivo cria o arquivo database.db com as tabelas povoadas, logo a partir dele é possivel gerar o database a qualquer momento, basta executar ele no terminal
-// Comando para executar o arquivo partindo da pasta do projeto=>  node ./src/infra/create-and-populate.js 
+    db.run(USUARIOS_SCHEMA, (error) => {
+      if (error) console.log("Erro ao criar tabela de usuários");
+    });
+  };
+  
+  // const populaTabelaUsr = () => {
+  // const ADD_USUARIOS_DATA = `
+  // INSERT INTO USUARIOS (NOME, CPF, EMAIL, DATA_DE_NASCIMENTO, TELEFONE, QUANTIDADE_PONTOS, SENHA)
+  // VALUES 
+  //     ('Eugênio Oliveira', 11111111101, 'eugenio.oliveira@bol.com.br', '1997/05/14',3137726422, 5, '*******'),
+  //     ('Olívia Ribeiro', 11111111102,'olivia.ribeiro@gmail.com', '1995/12/06', 3137726422, 10, '*******'),
+  //     ('Mirtes Faria Lima', 11111111103, 'mirtes_fl@yahoo.com', '1983/03/24', 3137726422, 2, '*******'),
+  // `;
+  
+  // db.run(ADD_USUARIOS_DATA, (error)=> {
+  //     if (error) console.log("Erro ao popular tabela de usuários");
+  //  });
+  // };
+  
+  
+  db.serialize(()=> {
+      criaTabelaUsr();
+      // populaTabelaUsr();
+  });
