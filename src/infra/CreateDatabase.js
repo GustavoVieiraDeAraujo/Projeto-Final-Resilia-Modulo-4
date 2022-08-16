@@ -14,7 +14,7 @@ const db = new sqlite3.Database("./src/infra/database.db");
 // Exemplo
 // ⇓⇓⇓⇓⇓⇓⇓
 
-const CreateTableExemplo = `
+const CreateTablePlans = `
 CREATE TABLE IF NOT EXISTS PLANS (
   "ID" INTEGER PRIMARY KEY AUTOINCREMENT,
   "NOME" varchar(64),
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS PLANS (
 // Exemplo
 // ⇓⇓⇓⇓⇓⇓⇓
 
-const PopulatingTableExemplo = `
+const PopulatingTablePlans = `
 INSERT INTO Exemplo (TIPO_PLANO, DESCRICAO, VALOR, DURACAO_PLANO)
 VALUES 
 ("plano basic", "10% de desconto nos ingressos e no combo de pipoca.", 39, trimestral),
@@ -58,8 +58,8 @@ VALUES
 // Exemplo
 // ⇓⇓⇓⇓⇓⇓⇓
 
-function criaTabelaExemplo() {
-  db.run(CreateTableExemplo, (error) => {
+function criaTabelaPlanos() {
+  db.run(CreateTablePlans, (error) => {
     if (error) {
       console.log(
         `Erro ao criar tabela Exemplo. Erro gerado => ${error.message}`
@@ -82,8 +82,8 @@ function criaTabelaExemplo() {
 // Exemplo
 // ⇓⇓⇓⇓⇓⇓⇓
 
-function povoaTabelaExemplo() {
-  db.run(PopulatingTableExemplo, (error) => {
+function povoaTabelaPlanos() {
+  db.run(PopulatingTablePlans, (error) => {
     if (error) {
       console.log(
         `Erro ao criar tabela Exemplo. Erro gerado => ${error.message}`
@@ -106,8 +106,8 @@ function povoaTabelaExemplo() {
 // ⇓⇓⇓⇓⇓⇓⇓
 
 db.serialize(() => {
-  criaTabelaExemplo();
-  povoaTabelaExemplo();
+  criaTabelaPlanos();
+  povoaTabelaPlanos();
 });
 
 // Esse arquivo cria o arquivo database.db com as tabelas povoadas, logo a partir dele é possivel gerar o database a qualquer momento, basta executar ele no terminal
