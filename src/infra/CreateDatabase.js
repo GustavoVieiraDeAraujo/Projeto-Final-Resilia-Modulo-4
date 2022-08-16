@@ -2,25 +2,27 @@ import sqlite3 from 'sqlite3'
 const db = new sqlite3.Database('./src/infra/database.db');
 
 
-const criaTabelaUsr = () => {
-  const USUARIOS_SCHEMA = `
-  CREATE TABLE IF NOT EXISTS USUARIOS (
-      NOME varchar(64),
-      ID INTEGER PRIMARY KEY AUTOINCREMENT,
-      CPF varchar(11),
-      EMAIL varchar(64),
-      DATA_DE_NASCIMENTO date,
-      TELEFONE varchar(14),
-      QUANTIDADE_PONTOS integer,
-      SENHA varchar(64),
+  const usersSquema =` 
+  CREATE TABLE IF NOT EXISTS "USUARIOS" (
+      "ID" INTEGER PRIMARY KEY AUTOINCREMENT,
+      "NOME" varchar(64),
+      "CPF" varchar(11),
+      "EMAIL" varchar(64),
+      "DATA_DE_NASCIMENTO" date,
+      "TELEFONE" varchar(14),
+      "QUANTIDADE_PONTOS" integer,
+      "SENHA" varchar(64)
     );`;
 
     // FOREIGN KEY (PLAN_ID) REFERENCES PLANS(id), (inserir plano)
 
-    db.run(USUARIOS_SCHEMA, (error) => {
-      if (error) console.log("Erro ao criar tabela de usuários");
-    });
-  };
+    function criaTabelaUsr() {
+      db.run(usersSquema, (error) => {
+          if (error) {
+            console.log(`Erro ao criar tabela Exemplo. Erro gerado => ${error.message}`)
+          }
+      })
+  }
   
   // const populaTabelaUsr = () => {
   // const ADD_USUARIOS_DATA = `
