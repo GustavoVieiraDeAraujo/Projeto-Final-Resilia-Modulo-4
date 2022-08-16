@@ -38,9 +38,9 @@ CREATE TABLE IF NOT EXISTS PLANS (
 const PopulatingTableExemplo = `
 INSERT INTO Exemplo (TIPO_PLANO, DESCRICAO, VALOR, DURACAO_PLANO)
 VALUES 
-("plano basic", "10% de desconto,  ", 39, trimestral),
-("plano standart", "20% de desconto, ", 49, trimestral),
-("plano premium", "30% de desconto, ", 69, trimestral)
+("plano basic", "10% de desconto nos ingressos e no combo de pipoca.", 39, trimestral),
+("plano standart", "20% de desconto nos ingressos, no combo de pipoca e em cinemas IMAX. ", 49, trimestral),
+("plano premium", "30% de desconto nos ingressos + combo de pipoca e acesso livre às salas IMAX.", 69, trimestral)
 
 `;
 
