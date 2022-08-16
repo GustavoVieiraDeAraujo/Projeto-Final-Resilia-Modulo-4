@@ -24,22 +24,25 @@ const db = new sqlite3.Database('./src/infra/database.db');
       })
   }
   
-  // const populaTabelaUsr = () => {
-  // const ADD_USUARIOS_DATA = `
-  // INSERT INTO USUARIOS (NOME, CPF, EMAIL, DATA_DE_NASCIMENTO, TELEFONE, QUANTIDADE_PONTOS, SENHA)
-  // VALUES 
-  //     ('Eugênio Oliveira', 11111111101, 'eugenio.oliveira@bol.com.br', '1997/05/14',3137726422, 5, '*******'),
-  //     ('Olívia Ribeiro', 11111111102,'olivia.ribeiro@gmail.com', '1995/12/06', 3137726422, 10, '*******'),
-  //     ('Mirtes Faria Lima', 11111111103, 'mirtes_fl@yahoo.com', '1983/03/24', 3137726422, 2, '*******'),
-  // `;
+ 
+  const UsersAdd = `
+  INSERT INTO USUARIOS (NOME, CPF, EMAIL, DATA_DE_NASCIMENTO, TELEFONE, QUANTIDADE_PONTOS, SENHA)
+  VALUES 
+      ('Eugênio Oliveira', 11111111101, 'eugenio.oliveira@bol.com.br', '1997/05/14',3137726422, 5, '*******'),
+      ('Olívia Ribeiro', 11111111102,'olivia.ribeiro@gmail.com', '1995/12/06', 3137726422, 10, '*******'),
+      ('Mirtes Faria Lima', 11111111103, 'mirtes_fl@yahoo.com', '1983/03/24', 3137726422, 2, '*******');
+  `
   
-  // db.run(ADD_USUARIOS_DATA, (error)=> {
-  //     if (error) console.log("Erro ao popular tabela de usuários");
-  //  });
-  // };
   
+  function populaTabelaUsr() {
+    db.run(UsersAdd , (error) => {
+        if (error) {
+          console.log(`Erro ao criar tabela Exemplo. Erro gerado => ${error.message}`)
+        }
+    })
+}
   
   db.serialize(()=> {
       criaTabelaUsr();
-      // populaTabelaUsr();
+      populaTabelaUsr();
   });
