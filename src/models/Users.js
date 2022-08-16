@@ -1,5 +1,5 @@
 
-export class modelUsers {
+class modelUsers {
     constructor(nome, cpf, email, dataNascimento, telefone, quantidadePontos, senha) {
       this.name = nome;
       this.cpf = cpf;
@@ -10,4 +10,6 @@ export class modelUsers {
       this.password = senha;
     }
   }
-  
+
+  export default modelUsers;
+

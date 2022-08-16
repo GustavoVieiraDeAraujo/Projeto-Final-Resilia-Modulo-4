@@ -1,3 +1,4 @@
+import usersModel from "../models/Users.js";
 
 import {
   deleteUsersByID,
@@ -18,50 +19,62 @@ export const controllersUsers = (app) => {
           }
         });
 
+        app.post("/users", async (req, res) => {
+          const { nome, cpf, email, dataNascimento, telefone, quantidadePontos, senha} = req.body;
+
+           const dataPost= new usersModel(nome, cpf, email, dataNascimento, telefone, quantidadePontos, senha);
+           try {
+           const data = await createUsers(dataPost);
+             res.status(201).json({ results: data, error: false });
+          } catch (erro) {
+             res.status(400).json({ message: erro.message, error: true });
+          }
+        });
 
         app.get("/users/one/:id", async (req, res) => {
-            const Users = await getUsersByID(req.params.id)
-            try {
-              (Users) ? res.status(200).json(Users) : () => {throw new Error("Users not found")}
-            } catch (e) {
-              res.status(400).send(e.message);
-            }
-          });
-
-    
-  
-        app.post("/users", async (req, res) => {
-            const { nome, cpf, email, dataNascimento, telefone, quantidadePontos, senha} = req.body;
-  
-             const dataMolded= new modelUsers(nome, cpf, email, dataNascimento, telefone, quantidadePontos, senha);
-             try {
-             const data = await createUsers(dataMolded);
-               res.status(201).json({ results: data, error: false });
-            } catch (erro) {
-               res.status(400).json({ message: erro.message, error: true });
-            }
-          });
+          try {
+            const data = await getUsersByID(req.params.id)
+            res.status(200).json({ results: data, error: false });
+          } catch (erro) {
+            res.status(400).json({ message: erro.message, error: true });
+          }
+        });
 
 
           app.put("/users/:id", async (req, res) => {
-            const {  nome, cpf, email, dataNascimento, telefone, quantidadePontos, senha } = req.body;
-            const responseDAO = await updateUsersByID([ nome, cpf, email, dataNascimento, telefone, quantidadePontos, senha, req.params.id]);
-            try {
-              (responseDAO == "Ticket updated") ? res.status(200).send(responseDAO) : () => {throw new Error("Failed to update entry")};
-            } catch (e) {
-              res.status(400).send(e.message);
-            }
-          });
+            const { nome, cpf, email, dataNascimento, telefone, quantidadePontos, senha } = req.body;
+            const { id } = req.params;
 
+            const oldUser = await getAllUsers(id);
+            const dataPut = new usersModel(
+              nome || oldUser[0].NOME,
+              cpf || oldUser[0].CPF,
+              email || oldUser[0].EMAIL,
+              dataNascimento || oldUser[0].DATA_DE_NASCIMENTO,
+              telefone || oldUser[0].TELEFONE,
+              quantidadePontos || oldUser[0].QUANTIDADE_PONTOS,
+              senha || oldUser[0].SENHA,
+            id
+            );
 
-          
-          app.delete("/users/:id", async (req, res) => {
-            const responseDAO =await deleteUsersByID(req.params.id);
             try {
-              (responseDAO == "Ticket deleted") ? res.status(200).send(responseDAO) : () => {throw new Error("Failed to delete entry")};
+              const data = await updateUsersByID (dataPut);
+              res.status(201).json({ results: data, error: false });
             } catch (erro) {
-              res.status(400).send(e.message);
+              res.status(400).json({ message: erro.message, error: true });
             }
           });
+        
+
+
+          app.delete("/users/:id", async (req, res) => {
+            try {
+              const data = await deleteUsersByID(req.params.id);
+              res.status(200).json({ results: data, error: false });
+            } catch (erro) {
+              res.status(400).json({ message: erro.message, error: true });
+            }
+          });
+       
 
 };
