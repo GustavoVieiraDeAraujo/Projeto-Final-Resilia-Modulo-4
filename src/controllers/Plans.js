@@ -36,7 +36,7 @@ export const controllerPlans = (app) => {
   });
 
   app.post("/plans", async (req, res) => {
-    const { type, price, description, score } = req.body;
+    const { tipo_plano, descricao, valor, duracao_plano } = req.body;
     const responseDAO = await createPlans([
       tipo_plano,
       descricao,
