@@ -1,8 +1,8 @@
 // !!!!! TOMAR CUIDADO AQUI !!!!!
 
 // Importando express
-import express from "express"
 import cors from "cors";
+import express from "express"
 
 // Instanciando express
 const app = express()
@@ -18,7 +18,6 @@ app.use(cors(
 ))
 
 //inserir codigo a partir daqui
-
 
 // Porta que API vai rodar
 app.listen(3000, () => console.log("API rodando na porta 3000"))
