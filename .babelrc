@@ -1,9 +1,0 @@
-// NÃO MEXER NESSE ARQUIVO SEM FALAR COM GRUPO
-
-{
-    "env": {
-        "test": {
-        "plugins": ["@babel/plugin-transform-modules-commonjs"]
-        }
-    }
-}

@@ -1,10 +1,10 @@
-// !!!!! TOMAR CUIDADO AQUI !!!!!
-
-// Importando express
-import express from "express"
+// Importando pacotes
 import cors from "cors";
-import { controllersUsers } from "./controllers/Users.js";
+import express from "express"
 
+// Importando controllers
+import { controllersUsers } from "./controllers/Users.js";
+import { controllerTickets } from "./controllers/Tickets.js"
 
 // Instanciando express
 const app = express()
@@ -20,8 +20,8 @@ app.use(cors(
 ))
 
 //inserir codigo a partir daqui
-
-controllersUsers (app)
+controllersUsers(app)
+controllerTickets(app)
 
 // Porta que API vai rodar
 app.listen(3000, () => console.log("API rodando na porta 3000"))
