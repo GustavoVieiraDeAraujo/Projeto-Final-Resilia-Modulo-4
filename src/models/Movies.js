@@ -1,5 +1,5 @@
 // Parte Marlon
-export class movies {
+class movies {
     constructor(NOME, DATA_DE_CRIACAO, SINOPSE, CLASSIFICACAO, DURACAO, HORARIOS) {
       this.NOME = NOME;
       this.DATA_DE_CRIACAO = DATA_DE_CRIACAO;
@@ -10,3 +10,5 @@ export class movies {
       
     }
   }
+
+  export default movies;
