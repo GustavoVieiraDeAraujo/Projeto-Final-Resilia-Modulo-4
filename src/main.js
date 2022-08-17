@@ -4,15 +4,13 @@ import express from "express"
 
 // Importando controllers
 import { controllersUsers } from "./controllers/Users.js";
-import { controllerTickets } from "./controllers/Tickets.js"
+import { controllerTickets } from "./controllers/Tickets.js";
+import { controllersMovies } from "./controllers/Movies.js";
 
-// Instanciando express
 const app = express()
 
-// Middleware
 app.use(express.json())
 
-// Limitando usuarios da API
 app.use(cors(
     {
     origin: "*"
@@ -20,8 +18,9 @@ app.use(cors(
 ))
 
 //inserir codigo a partir daqui
+controllersMovies(app)
 controllersUsers(app)
 controllerTickets(app)
 
-// Porta que API vai rodar
+
 app.listen(3000, () => console.log("API rodando na porta 3000"))
