@@ -4,7 +4,6 @@ const db = new sqlite3.Database("./src/infra/database.db");
 const CreateTablePlans = `
 CREATE TABLE IF NOT EXISTS PLANS (
   "ID" INTEGER PRIMARY KEY AUTOINCREMENT,
-  "NOME" varchar(64),
   "TIPO_PLANO" varchar(64),
   "DESCRICAO" varchar(200),
   "VALOR" integer,
@@ -12,13 +11,11 @@ CREATE TABLE IF NOT EXISTS PLANS (
 );`;
 
 const PopulatingTablePlans = `
-INSERT INTO Exemplo (TIPO_PLANO, DESCRICAO, VALOR, DURACAO_PLANO)
+INSERT INTO PLANS (TIPO_PLANO, DESCRICAO, VALOR, DURACAO_PLANO)
 VALUES 
-("plano basic", "10% de desconto nos ingressos e no combo de pipoca.", 39, trimestral),
-("plano standart", "20% de desconto nos ingressos, no combo de pipoca e em cinemas IMAX. ", 49, trimestral),
-("plano premium", "30% de desconto nos ingressos + combo de pipoca e acesso livre às salas IMAX.", 69, trimestral)
-
-`;
+("plano basic", "1 ingresso por mês para assistir qualquer filme no cinema e 25% de desconto na pipoca e no refrigerante.", 19, "mensal"),
+("plano standart", "2 ingressos por mês para assistir qualquer filme no cinema e 35% de desconto na pipoca e no refrigerante e 35% de desconto nas salas IMAX 4K e 3D. ", 39, "mensal"),
+("plano premium", "4 ingressos por mês para assistir qualquer filme no cinema, combo pipoca  + refrigerante e salas IMAX 4K e 3D inclusas.", 79, "mensal");`
 
 function criaTabelaPlanos() {
   db.run(CreateTablePlans, (error) => {
