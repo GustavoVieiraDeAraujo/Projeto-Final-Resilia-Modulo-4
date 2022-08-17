@@ -1,7 +1,10 @@
-// Importando express
+// Importando pacotes
 import cors from "cors";
 import express from "express"
-import {controllerTickets} from "./controllers/Tickets.js"
+
+// Importando controllers
+import { controllersUsers } from "./controllers/Users.js";
+import { controllerTickets } from "./controllers/Tickets.js"
 
 // Instanciando express
 const app = express()
@@ -17,6 +20,7 @@ app.use(cors(
 ))
 
 //inserir codigo a partir daqui
+controllersUsers(app)
 controllerTickets(app)
 
 // Porta que API vai rodar
