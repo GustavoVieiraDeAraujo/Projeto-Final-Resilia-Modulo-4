@@ -1,5 +1,3 @@
-// !!!!! TOMAR CUIDADO AQUI !!!!!
-
 // Importando express
 import cors from "cors";
 import express from "express"
