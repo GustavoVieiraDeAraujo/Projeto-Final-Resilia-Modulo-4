@@ -41,13 +41,12 @@ const getAllMovies = () => {
     });
   };
   
-  const updateMoviesByID = (model) => {
+  const updateMoviesByID = (model, id) => {
     return new Promise((resolve, reject) => {
       bd.run(
         `UPDATE movies 
-          SET NOME = ?, DATA_DE_CRIACAO = ?, SINOPSE = ?, CLASSIFICACAO = ?, DURACAO = ?, HORARIOS = ?
-                WHERE ID = ?`,
-              [model.NOME, model.DATA_DE_CRIACAO, model.SINOPSE, model.CLASSIFICACAO, model.DURACAO, model.HORARIOS],  
+          SET NOME = ?, DATA_DE_CRIACAO = ?, SINOPSE = ?, CLASSIFICACAO = ?, DURACAO = ?, HORARIOS = ? WHERE ID = ?`,
+              [model.NOME, model.DATA_DE_CRIACAO, model.SINOPSE, model.CLASSIFICACAO, model.DURACAO, model.HORARIOS, id],  
                 (erro, rows) => {
           if (erro) {
             reject(erro.message);

@@ -42,22 +42,22 @@ export const controllersMovies = (app) => {
 
 
           app.put("/movies/:id", async (req, res) => {
-            const { NOME, DATA_DE_CRIACAO, SINOPSE, CLASSIFICACAO, DURACAO, HORARIOS } = req.body;
+            const { NOME, DATA_DE_CRIACAO, SINOPSE, CLASSIFICACAO, DURACAO, HORARIOS} = req.body;
             const { id } = req.params;
 
-            const oldMovie = await getAllMovies(id);
+            const oldMovie = await getMovieByID(id);
             const dataPut = new moviesModel(
-              NOME || oldMovie[0].nome,
-              DATA_DE_CRIACAO || oldMovie[0].data_de_criacao,
-              SINOPSE || oldMovie[0].sinopse,
-              CLASSIFICACAO || oldMovie[0].classificacao,
-              DURACAO || oldMovie[0].duracao,
-              HORARIOS || oldMovie[0].horarios,
-            id
+              NOME || oldMovie[0].NOME,
+              DATA_DE_CRIACAO || oldMovie[0].DATA_DE_CRIACAO,
+              SINOPSE || oldMovie[0].SINOPSE,
+              CLASSIFICACAO || oldMovie[0].CLASSIFICACAO,
+              DURACAO || oldMovie[0].DURACAO,
+              HORARIOS || oldMovie[0].HORARIOS,
+        
             );
 
             try {
-              const data = await updateMoviesByID (dataPut);
+              const data = await updateMoviesByID (dataPut, id);
               res.status(201).json({ results: data, error: false });
             } catch (erro) {
               res.status(400).json({ message: erro.message, error: true });
