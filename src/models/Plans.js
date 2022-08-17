@@ -1,10 +1,10 @@
 // Parte Diego
 class Plan {
-  constructor(tipo_plano, descricao, valor, duracao_plano) {
-    this.tipo_plano = tipo_plano;
-    this.descricao = descricao;
-    this.valor = valor;
-    this.duracao_plano = duracao_plano;
+  constructor(TIPO_PLANO, DESCRICAO, VALOR, DURACAO_PLANO) {
+    this.TIPO_PLANO = TIPO_PLANO;
+    this.DESCRICAO = DESCRICAO;
+    this.VALOR = VALOR;
+    this.DURACAO_PLANO = DURACAO_PLANO;
   }
 }
 

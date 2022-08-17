@@ -1,6 +1,6 @@
 # Ciplus +
 
-O Ciplus+ é uma API (Interface de programação de aplicações) que possui objetivo principal conectar um banco de dados ([diagrama do banco de dados](https://dbdiagram.io/d/62f6d557c2d9cf52fa9bcb0f)) voltado à um futuro projeto react.js. Alem disso, ela controla as requisições feita ao banco de dados e controla os consumidores dela, alem de apresentar outras funcionalidades secundarias, as quais podem ser testadas, fazendo uma copia do projeto.
+O Ciplus+ é uma API (Interface de programação de aplicações) que possui objetivo principal conectar um banco de dados ([diagrama do banco de dados](https://dbdiagram.io/d/62f6d557c2d9cf52fa9bcb0f)) voltado a um futuro projeto react.js. Além disso, ela controla as requisições feita ao banco de dados e controla os consumidores dela, alem de apresentar outras funcionalidades secundarias, as quais podem ser testadas, fazendo uma copia do projeto.
 
 # Clonando repositorio da API
 
@@ -37,3 +37,4 @@ Com as dependencias instaladas na pasta onde os arquivos da API estão armazenad
 ```bash
 npm start
 ```
+

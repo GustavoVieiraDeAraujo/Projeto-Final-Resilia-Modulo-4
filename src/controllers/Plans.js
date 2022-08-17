@@ -23,19 +23,19 @@ export const controllersPlans = (app) => {
   });
 
   app.post("/plans", async (req, res) => {
-    const { tipo_plano, descricao, valor, duracao_plano } = req.body;
+    const { TIPO_PLANO, DESCRICAO, VALOR, DURACAO_PLANO } = req.body;
 
     const dataPost = new plansModel(
-      tipo_plano,
-      descricao,
-      valor,
-      duracao_plano
+      TIPO_PLANO,
+      DESCRICAO,
+      VALOR,
+      DURACAO_PLANO
     );
     try {
       const data = await createPlans(dataPost);
       res.status(201).json({ results: data, error: false });
     } catch (erro) {
-      res.status(400).json({ message: erro.message, error: true });
+      res.status(400).json({ message: erro, error: true });
     }
   });
 
@@ -49,15 +49,15 @@ export const controllersPlans = (app) => {
   });
 
   app.put("/plans/:id", async (req, res) => {
-    const { tipo_plano, descricao, valor, duracao_plano } = req.body;
+    const { TIPO_PLANO, DESCRICAO, VALOR, DURACAO_PLANO } = req.body;
     const { id } = req.params;
 
     const oldPlans = await getAllPlans(id);
     const dataPut = new plansModel(
-      tipo_plano || oldPlans[0].tipo_plano,
-      descricao || oldPlans[0].descricao,
-      valor || oldPlans[0].valor,
-      duracao_plano || oldPlans[0].duracao_plano,
+      TIPO_PLANO || oldPlans[0].tipo_plano,
+      DESCRICAO || oldPlans[0].descricao,
+      VALOR || oldPlans[0].valor,
+      DURACAO_PLANO || oldPlans[0].duracao_plano,
       id
     );
 
@@ -65,7 +65,7 @@ export const controllersPlans = (app) => {
       const data = await updatePlansByID(dataPut);
       res.status(201).json({ results: data, error: false });
     } catch (erro) {
-      res.status(400).json({ message: erro.message, error: true });
+      res.status(400).json({ message: erro, error: true });
     }
   });
 

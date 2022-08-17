@@ -15,9 +15,9 @@ const getAllPlans = () => {
 const createPlans = (model) => {
   return new Promise((resolve, reject) => {
     bd.run(
-      `INSERT INTO PLANS (TIPO_PLANO, DESCRICAO, VALOR, DURACAO_PLANOS)
+      `INSERT INTO PLANS (TIPO_PLANO, DESCRICAO, VALOR, DURACAO_PLANO)
           VALUES (?,?,?,?)`,
-      [model.tipo_plano, model.descricao, model.valor, model.duracao_plano],
+      [model.TIPO_PLANO, model.DESCRICAO, model.VALOR, model.DURACAO_PLANO],
       (erro) => {
         if (erro) {
           reject(erro.message);
@@ -45,9 +45,9 @@ const updatePlansByID = (model) => {
   return new Promise((resolve, reject) => {
     bd.run(
       `UPDATE PLANS
-        SET TIPO_PLANOS = ?, DESCRICAO = ?, VALOR = ?, DURACAO_PLANOS = ?  
+        SET TIPO_PLANO = ?, DESCRICAO = ?, VALOR = ?, DURACAO_PLANO = ?  
               WHERE ID = ?`,
-      [model.tipo_plano, model.descricao, model.valor, model.duracao_plano],
+      [model.TIPO_PLANO, model.DESCRICAO, model.VALOR, model.DURACAO_PLANO],
       (erro, rows) => {
         if (erro) {
           reject(erro.message);
