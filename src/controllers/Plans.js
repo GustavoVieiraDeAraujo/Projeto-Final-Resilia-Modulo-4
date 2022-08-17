@@ -58,11 +58,11 @@ export const controllersPlans = (app) => {
       DESCRICAO || oldPlans[0].descricao,
       VALOR || oldPlans[0].valor,
       DURACAO_PLANO || oldPlans[0].duracao_plano,
-      id
+      
     );
 
     try {
-      const data = await updatePlansByID(dataPut);
+      const data = await updatePlansByID(dataPut, id);
       res.status(201).json({ results: data, error: false });
     } catch (erro) {
       res.status(400).json({ message: erro, error: true });

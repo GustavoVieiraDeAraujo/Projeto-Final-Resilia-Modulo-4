@@ -41,13 +41,14 @@ const getPlansByID = (id) => {
   });
 };
 
-const updatePlansByID = (model) => {
+const updatePlansByID = (model, id) => {
   return new Promise((resolve, reject) => {
     bd.run(
       `UPDATE PLANS
         SET TIPO_PLANO = ?, DESCRICAO = ?, VALOR = ?, DURACAO_PLANO = ?  
               WHERE ID = ?`,
-      [model.TIPO_PLANO, model.DESCRICAO, model.VALOR, model.DURACAO_PLANO],
+      [model.TIPO_PLANO, model.DESCRICAO, model.VALOR, model.DURACAO_PLANO, id
+      ],
       (erro, rows) => {
         if (erro) {
           reject(erro.message);
