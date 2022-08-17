@@ -1,112 +1,42 @@
 import sqlite3 from 'sqlite3'
 const db = new sqlite3.Database('./src/infra/database.db');
 
-// Molde para Criação de Tabela 
-// ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓
+const CreateTableTickets =`
+CREATE TABLE IF NOT EXISTS TICKETS (
+  "ID" varchar(150) PRIMARY KEY NOT NULL,
+  "SYMBOL" varchar(120),
+  "TYPE" varchar(120),
+  "PRICE" integer,
+  "DESCRIPTION" text,
+  "SCORE" integer,
+  "CREATION_DATE" varchar(120),
+  "LAST_UPDATE" varchar(120));`
 
-// const CreateTable<coloca o nome da tabela aqui>=`
-// CREATE TABLE IF NOT EXISTS <coloca o nome da tabela aqui> (
-//     "ID" INTEGER PRIMARY KEY AUTOINCREMENT 
-//     (campo ID é padrão em todas as tabelas do projeto)
-//     <coloca os outros campos da tabela aqui>
-//);`
-
-// Exemplo
-// ⇓⇓⇓⇓⇓⇓⇓
-
-const CreateTableExemplo =`
-CREATE TABLE IF NOT EXISTS "Exemplo" (
-  "ID" INTEGER PRIMARY KEY AUTOINCREMENT,
-  "NOME" varchar(64),
-  "EMAIL" varchar(64),
-  "SENHA" varchar(64),
-  "VALOR" integer,
-  "SEXO" char
-);`;
-
-// Molde para Povoar a Tabela 
-// ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓ 
-
-// const PopulatingTable<coloca o nome da tabela aqui> =`
-// INSERT INTO <coloca o nome da tabela aqui> (<coloca os campos da tabela aqui>)
-// VALUES (<coloca os dados que vão ser inseridos aqui>)
-//;`
-
-// Exemplo
-// ⇓⇓⇓⇓⇓⇓⇓
-
-const PopulatingTableExemplo =`
-INSERT INTO Exemplo (NOME, EMAIL, SENHA, VALOR, SEXO)
+const PopulatingTableTickets =`
+INSERT INTO TICKETS (ID, SYMBOL, TYPE, PRICE, DESCRIPTION, SCORE, CREATION_DATE, LAST_UPDATE)
 VALUES 
-("Marlon", "marlon@marlon.com", "????????", 1000, "M"),
-("Isabela", "isabela@isabela.com", "????????", 2000, "F"),
-("Diego", "diego@diego.com", "????????", 3000, "M"),
-("Gustavo", "gustavo@gustavo.com", "????????", 4000, "M");
+('5e7079eb-4ff3-4cbc-b6a5-b377e1c8ec00','🍂', 'U2FsdGVkX1/25vV40KYrxvHq6R0=', 'U2FsdGVkX18blUfyh61gtZTX', 'U2FsdGVkX18NymCNBGMaZWbXKHM=', 'U2FsdGVkX19pHPx5Nsky4Y6z', '🕗 16/08/2022 => 17:10:16 🕗', '🕗 16/08/2022 => 17:10:16 🕗'),
+('e85cc766-5a95-438c-822c-8a0c36864618','🚵🏼','U2FsdGVkX1833yXjM27I5Jp9tHNZHA==','U2FsdGVkX1+5qXstUKWfIy1L','U2FsdGVkX18qoWaQf8ZLkvW1ibBjWA==','U2FsdGVkX19xcT9P264WTCkF','🕗 16/08/2022 => 17:10:16 🕗', '🕗 16/08/2022 => 17:10:16 🕗'),
+('9042d5f3-cebd-4661-a75b-47a40c8a4474','🤜🏻','U2FsdGVkX1/lzwgADXB7E13BcUy7dg==','U2FsdGVkX19fN09SWAFPSWOr','U2FsdGVkX1+i/lEqs0ACyn5/lbrY','U2FsdGVkX1/muXHqJ5YNfd6H','🕗 16/08/2022 => 17:10:16 🕗', '🕗 16/08/2022 => 17:10:16 🕗');
 `
 
-// Molde da função de CRIAÇÃO da tabela  
-// ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓ 
-
-// function criaTabela<nome da tabela>() {
-//     db.run(<nome do molde de criação da tabela>, (error) => {
-//         if (error) {
-//           console.log(`Erro ao criar tabela <nome da tabela>. Erro gerado => ${error.message}`)
-//         }
-//     })
-// }
-
-// Exemplo
-// ⇓⇓⇓⇓⇓⇓⇓
-
-function criaTabelaExemplo() {
-    db.run(CreateTableExemplo, (error) => {
+function criaTabelaTickets() {
+    db.run(CreateTableTickets, (error) => {
         if (error) {
-          console.log(`Erro ao criar tabela Exemplo. Erro gerado => ${error.message}`)
+          console.log(`Erro ao criar tabela Tickets. Erro gerado => ${error.message}`)
         }
     })
 }
 
-// Molde da função de POVOAMENTO da tabela
-// ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓ 
-
-// function povoaTabela<nome da tabela>() {
-//     db.run(<nome do molde de povoamento da tabela>, (error) => {
-//         if (error) {
-//           console.log(`Erro ao criar tabela <nome da tabela>. Erro gerado => ${error.message}`)
-//         }
-//     })
-// }
-
-// Exemplo
-// ⇓⇓⇓⇓⇓⇓⇓
-
-function povoaTabelaExemplo() {
-    db.run(PopulatingTableExemplo , (error) => {
+function povoaTabelaTickets() {
+    db.run(PopulatingTableTickets , (error) => {
         if (error) {
-          console.log(`Erro ao criar tabela Exemplo. Erro gerado => ${error.message}`)
+          console.log(`Erro ao povoar tabela Tickets. Erro gerado => ${error.message}`)
         }
     })
 }
-
-// Toques Finais
-// ⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓⇓
-
-// !!!!!!!!!!!!! PRIMEIRO CRIA A TABELA !!!!!!!!!!!!!!!!!!!!
-// !!!!!!!!!!!!! DEPOIS POVOA ELA !!!!!!!!!!!!!!!
-
-// db.serialize( ()=> {
-//    <coloque as funções criadas aqui dentro>
-// });
-
-
-// Exemplo
-// ⇓⇓⇓⇓⇓⇓⇓
 
 db.serialize( ()=> {
-  criaTabelaExemplo();
-  povoaTabelaExemplo();
+  criaTabelaTickets();
+  povoaTabelaTickets();
 })
-
-
-// Esse arquivo cria o arquivo database.db com as tabelas povoadas, logo a partir dele é possivel gerar o database a qualquer momento, basta executar ele no terminal
-// Comando para executar o arquivo partindo da pasta do projeto=>  node ./src/infra/create-and-populate.js 
