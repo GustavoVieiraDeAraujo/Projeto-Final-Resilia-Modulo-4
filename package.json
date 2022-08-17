@@ -14,7 +14,7 @@
   "scripts": {
     "createDatabase": "node ./src/infra/CreateDatabase.js",
     "restartDatabase": "rm ./src/infra/database.db & npm run createDatabase",
-    "start": "node ./src/main.js",
+    "start": "npm run createDatabase & node ./src/main.js",
     "nodemon": "nodemon ./src/main.js"
   }
 }
