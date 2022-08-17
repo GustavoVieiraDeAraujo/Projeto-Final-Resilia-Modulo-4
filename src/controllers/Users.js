@@ -58,7 +58,7 @@ export const controllersUsers = (app) => {
             );
 
             try {
-              const data = await updateUsersByID (dataPut);
+              const data = await updateUsersByID (dataPut, id);
               res.status(201).json({ results: data, error: false });
             } catch (erro) {
               res.status(400).json({ message: erro.message, error: true });

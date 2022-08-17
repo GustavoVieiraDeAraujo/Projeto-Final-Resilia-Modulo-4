@@ -41,13 +41,13 @@ const getAllUsers = () => {
     });
   };
   
-  const updateUsersByID = (model) => {
+  const updateUsersByID = (model,id) => {
     return new Promise((resolve, reject) => {
       bd.run(
         `UPDATE USUARIOS 
               SET NOME = ?, CPF = ?, EMAIL = ?, DATA_DE_NASCIMENTO = ?, TELEFONE = ?, QUANTIDADE_PONTOS = ?, SENHA = ?
                 WHERE ID = ?`,
-              [model.name, model.cpf, model.email, model.dataNascimento, model.telefone, model.quantidadePontos, model.password],  
+              [model.name, model.cpf, model.email, model.dataNascimento, model.telefone, model.quantidadePontos, model.password, id],  
                 (erro, rows) => {
           if (erro) {
             reject(erro.message);
