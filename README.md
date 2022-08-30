@@ -121,9 +121,47 @@ npm start
 Confira os [slides](https://drive.google.com/file/d/1qYZS7Q31hcenWPKK5SZYk0vNdFiKLM5T/view?usp=sharing) que fizemos para a nossa apresentação.
 
 
-## Autores
+## 🤝 Colaboradores
 
-- [Diego Cripim](https://github.com/Cripim)
-- [Gustavo Vieira](https://github.com/GustavoVieiraDeAraujo)
-- [Isabella Oliveira](https://github.com/isabellaoliv)
-- [Marlon Alves](https://github.com/Marlonalvss)
+Agradecemos às seguintes pessoas que contribuíram para este projeto:
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/Marlonalvss">
+        <img src="https://cdn.discordapp.com/attachments/999712721941581977/1003868547711254528/86992904.jpg" width="100px;" alt="Foto Perfil Marlon GitHub"/><br>
+        <sub>
+          <b>Marlon Alves</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Cripim">
+        <img src="https://avatars.githubusercontent.com/u/102764794?v=4" width="100px;" alt="Foto perfil Diego GitHub"/><br>
+        <sub>
+          <b>Diego Cripim</b>
+        </sub>
+      </a>
+    </td>
+     <td align="center">
+      <a href="https://github.com/isabellaoliv">
+        <img src="https://avatars.githubusercontent.com/u/92725386?v=4" width="100px;" alt="Foto perfil Isabella GitHub"/><br>
+        <sub>
+          <b>Isabella Oliveira</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/GustavoVieiraDeAraujo">
+        <img src="https://avatars.githubusercontent.com/u/98619055?v=4" width="100px;" alt="Foto perfil Gustavo GitHub"/><br>
+        <sub>
+          <b>Gustavo Araujo</b>
+        </sub>
+      </a>
+    </td>
+</table>
+
+
+## 📝 Licença
+
+Esse projeto está sob licença de Resilia Educação.
